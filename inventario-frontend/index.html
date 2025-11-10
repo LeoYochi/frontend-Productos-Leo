@@ -2,127 +2,248 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Inventario de Productos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8">
+    <title>Inventario de Productos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/src/style.css">
   <link rel="icon" type="image/png" href="/box.png">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+        }
 
+
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: #ffffff;
+            padding: 2rem;
+            color: #212529;
+        }
+
+       
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(90deg, #0b5ed7, #0dcaf0);
+                transform: scale(1.03);
+            }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.08);
+            transition: 0.2s ease-in-out;
+        }
+
+        .table td,
+        .table th {
+            vertical-align: middle;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table tbody tr {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .table tbody td i {
+            color: #0d6efd;
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        hr {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
 </head>
 
-<style>
-  .table-personalizado {
-    border-radius: 5px;
-  }
-</style>
+<body>
+    <div class="container py-5">
 
-<body class="bg-light">
-  <div class="container mt-4 ">
-    <h1 class="mb-5 text-center">Inventario de Productos</h1>
-
-    <div class="row justify-content-center g-3 mb-5">
-      <!-- 🔍 Buscador por nombre -->
-      <div class="col-12 col-md-4">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-search"></i></span>
-          <input type="text" id="buscar" class="form-control" placeholder="Buscar producto por nombre...">
+        <!-- Encabezado -->
+        <div class="text-center mb-5">
+            <h1 class="text-white"><i class="bi bi-box2-fill me-2 text-white"></i>Inventario de Productos</h1>
+            <p class="text-light">Administra, busca y gestiona tu inventario de manera rápida y eficiente</p>
         </div>
-      </div>
 
-      <!-- 🗂️ Busqueda por categoría -->
-      <div class="col-12 col-md-4">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-funnel"></i></span>
-          <select id="filtro-categoria" class="form-select" required>
-            <option value="" disabled selected>Busqueda por categoría</option>
-            <option value="">Todos los Productos</option>
-            <option value="Frutas">Frutas</option>
-            <option value="Verduras">Verduras</option>
-            <option value="Botanas">Botanas</option>
-            <option value="Cereales">Cereales</option>
-            <option value="Bebidas">Bebidas</option>
-            <option value="Lácteos">Lácteos</option>
-            <option value="Limpieza">Limpieza</option>
-            <option value="Tecnología">Tecnología</option>
-          </select>
+        <!-- Buscar -->
+        <div class="card-custom mb-4 bg-light">
+            <div class="row justify-content-center g-3">
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text text-white bg-primary"><i class="bi bi-search"></i></span>
+                        <input type="text" id="buscar" class="form-control" placeholder="Buscar producto por nombre...">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text text-white bg-primary"><i class="bi bi-funnel"></i></span>
+                        <select id="filtro-categoria" class="form-select" required>
+                            <option value="" disabled selected>Filtrar por categoría</option>
+                            <option value="">Todos los productos</option>
+                            <option value="Frutas">Frutas</option>
+                            <option value="Verduras">Verduras</option>
+                            <option value="Botanas">Botanas</option>
+                            <option value="Cereales">Cereales</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Lácteos">Lácteos</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Calzado">Calzado</option>
+                            <option value="Deportes">Deportes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ➕ Formulario para agregar -->
-    <form id="form-producto" class="row g-3 mb-5">
-      <!-- Nombre -->
-      <div class="col-12 col-md-3">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-box-seam"></i></span>
-          <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+        <!-- Formulario -->
+        <div class="card-custom mb-5 bg-light">
+            <form id="form-producto" class="row g-3">
+                <div class="col-12 col-md-3">
+                    <div class="input-group ">
+                        <span class="input-group-text text-white bg-primary"><i class="bi bi-box-seam"></i></span>
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-text text-white bg-primary">$</span>
+                        <input type="number" id="precio" class="form-control" placeholder="Precio" required>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-text text-white bg-primary"><i class="bi bi-123"></i></span>
+                        <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" required>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text text-white bg-primary"><i class="bi bi-tags"></i></span>
+                        <select id="categoria" class="form-select" required>
+                            <option value="" disabled selected>Categoría</option>
+                            <option value="Frutas">Frutas</option>
+                            <option value="Verduras">Verduras</option>
+                            <option value="Botanas">Botanas</option>
+                            <option value="Cereales">Cereales</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Lácteos">Lácteos</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Calzado">Calzado</option>
+                            <option value="Deportes">Deportes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-plus-circle me-1"></i>Agregar
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
 
-      <!-- Precio -->
-      <div class="col-12 col-md-2">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-cash"></i></span>
-          <input type="number" id="precio" class="form-control" placeholder="Precio" required>
+        <!-- Tabla -->
+        <div class="card-custom bg-light p-0 overflow-hidden">
+            <div class="table-responsive">
+                <table class="table align-middle text-center mb-0 table-hover" style="border-collapse: separate; border-spacing: 0;">
+                    <thead style="background: linear-gradient(90deg, #0d6efd, #0dcaf0); color: white;">
+                        <tr>
+                            <th scope="col"><i class="bi bi-box-seam me-2"></i>Nombre</th>
+                            <th scope="col"><i class="bi bi-cash-coin me-2"></i>Precio</th>
+                            <th scope="col"><i class="bi bi-123 me-2"></i>Cantidad</th>
+                            <th scope="col"><i class="bi bi-tags me-2 "></i>Categoría</th>
+                            <th scope="col"><i class="bi bi-gear-fill me-2"></i>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productos-body" style="background-color: #ffffff;">
+                        <!-- Filas se insertan dinámicamente desde /src/main.js -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
 
-      <!-- Cantidad -->
-      <div class="col-12 col-md-2">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-123"></i></span>
-          <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" required>
+        <!-- Modal Editar -->
+        <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="editarModalLabel"><i class="bi bi-pencil-square me-2"></i>Editar producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editarForm">
+                            <div class="mb-3">
+                                <label for="editarNombre" class="form-label">Nombre</label>
+                                <input type="text" id="editarNombre" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarPrecio" class="form-label">Precio</label>
+                                <input type="number" id="editarPrecio" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarCantidad" class="form-label">Cantidad</label>
+                                <input type="number" id="editarCantidad" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarCategoria" class="form-label">Categoría</label>
+                                <select id="editarCategoria" class="form-select" required>
+                                    <option value="Frutas">Frutas</option>
+                                    <option value="Verduras">Verduras</option>
+                                    <option value="Botanas">Botanas</option>
+                                    <option value="Cereales">Cereales</option>
+                                    <option value="Bebidas">Bebidas</option>
+                                    <option value="Lácteos">Lácteos</option>
+                                    <option value="Limpieza">Limpieza</option>
+                                    <option value="Tecnología">Tecnología</option>
+                                    <option value="Ropa">Ropa</option>
+                                    <option value="Calzado">Calzado</option>
+                                    <option value="Deportes">Deportes</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Categoría -->
-      <div class="col-12 col-md-3">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-tags"></i></span>
-          <select id="categoria" class="form-select" required>
-            <option value="" disabled selected>Categoría</option>
-            <option value="Frutas">Frutas</option>
-            <option value="Verduras">Verduras</option>
-            <option value="Botanas">Botanas</option>
-            <option value="Cereales">Cereales</option>
-            <option value="Bebidas">Bebidas</option>
-            <option value="Lácteos">Lácteos</option>
-            <option value="Limpieza">Limpieza</option>
-            <option value="Tecnología">Tecnología</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Botón Agregar -->
-      <div class="col-12 col-md-2">
-        <button type="submit" class="btn btn-primary w-100">
-          <i class="bi bi-plus-circle me-1"></i> Agregar
-        </button>
-      </div>
-    </form>
-
-    <!-- 📋 Tabla -->
-    <div class="table-personalizado table-responsive shadow-lg ">
-      <table class="table table-striped ">
-        <thead class="table-primary">
-          <tr>
-            <th class="text-center"><i class="bi bi-box-seam me-2"></i>Nombre</th>
-            <th class="text-center"><i class="bi bi-cash me-2"></i>Precio</th>
-            <th class="text-center"><i class="bi bi-123 me-2"></i>Cantidad</th>
-            <th class="text-center"><i class="bi bi-tags me-2"></i>Categoría</th>
-            <th class="text-center"><i class="bi bi-gear me-2"></i>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody id="productos-body">
-          <!-- Aquí se renderizan los productos -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ✏️ Modal para editar -->
+      <!-- ✏️ Modal para editar -->
   <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -277,10 +398,13 @@
     </div>
   </div>
 
+        <footer class="mt-5">
+            <p>Inventario de Productos © 2025 | Desarrollado por Alfredo Juan Moroni - Leonardo Pasten Martínez</p>
+        </footer>
+    </div>
 
-
-
-  <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

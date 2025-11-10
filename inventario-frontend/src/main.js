@@ -25,10 +25,10 @@ async function cargarProductos() {
           <div class="d-flex justify-content-center gap-2 flex-wrap">
             <button class="btn btn-warning btn-sm" 
               onclick="editarProducto('${prod._id}', '${prod.nombre}', '${prod.precio}', '${prod.cantidad}', '${prod.categoria}')">
-              <i class="bi bi-pencil"></i>
+              <i class="bi bi-pencil text-dark"></i>
             </button>
             <button class="btn btn-danger btn-sm" onclick="eliminarProducto('${prod._id}')">
-              <i class="bi bi-trash"></i>
+              <i class="bi bi-trash text-dark"></i>
             </button>
           </div>
         </td>
