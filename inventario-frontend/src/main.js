@@ -35,12 +35,14 @@ async function cargarProductos() {
       </tr>
     `;
   });
-
+// llama para aplicar búsqueda/categoria
   aplicarFiltros();
 }
 
 //  Agregar producto
 form.addEventListener("submit", async e => {
+
+  //evita el comportamiento por defecto
   e.preventDefault();
 
   const nombreNuevo = document.getElementById("nombre").value.trim().toLowerCase();
