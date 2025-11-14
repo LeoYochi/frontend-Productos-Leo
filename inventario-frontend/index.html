@@ -2,409 +2,393 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Inventario de Productos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/src/style.css">
+  <meta charset="UTF-8">
+  <title>Inventario de Productos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="icon" type="image/png" href="/box.png">
-    <style>
-        body {
-            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-            color: #fff;
-        }
+  <style>
+    body {
+      background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
 
+    .card-custom {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: lightgray;
+      padding: 2rem;
+      color: #212529;
+    }
 
-        .card-custom {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            background: #ffffff;
-            padding: 2rem;
-            color: #212529;
-        }
+    .form-control,
+    .form-select {
+      border-radius: 10px;
+    }
 
-       
+    .btn-primary {
+      background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+      border: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
 
-        .form-control,
-        .form-select {
-            border-radius: 10px;
-        }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #0b5ed7, #0dcaf0);
+      transform: scale(1.03);
+    }
 
-        .btn-primary {
-            background: linear-gradient(90deg, #0d6efd, #0dcaf0);
-            border: none;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
+    .table-hover tbody tr:hover {
+      background-color: rgba(13, 110, 253, 0.08);
+      transition: 0.2s ease-in-out;
+    }
 
-            .btn-primary:hover {
-                background: linear-gradient(90deg, #0b5ed7, #0dcaf0);
-                transform: scale(1.03);
-            }
+    .table td,
+    .table th {
+      vertical-align: middle;
+      border-color: rgba(0, 0, 0, 0.05);
+    }
 
-        .table-hover tbody tr:hover {
-            background-color: rgba(13, 110, 253, 0.08);
-            transition: 0.2s ease-in-out;
-        }
+    .table thead th {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .table td,
-        .table th {
-            vertical-align: middle;
-            border-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .table thead th {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .table tbody tr {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-        }
-
-        .table tbody td i {
-            color: #0d6efd;
-        }
-
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            color: #e0e0e0;
-            font-size: 0.9rem;
-        }
-
-        hr {
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-        }
-    </style>
+    footer {
+      text-align: center;
+      color: #e0e0e0;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container py-5">
+  <div class="container py-5">
 
-        <!-- Encabezado -->
-        <div class="text-center mb-5">
-            <h1 class="text-white"><i class="bi bi-box2-fill me-2 text-white"></i>Inventario de Productos</h1>
-            <p class="text-light">Administra, busca y gestiona tu inventario de manera rápida y eficiente</p>
+    <!-- Encabezado -->
+    <div class="text-center mb-5">
+      <h1 class="text-white"><i class="bi bi-box2-fill me-2 text-white"></i>Inventario de Productos</h1>
+      <p class="text-light">Administra, busca y gestiona tu inventario de manera rápida y eficiente</p>
+    </div>
+
+    <!-- Buscar -->
+    <div class="card-custom mb-4 bg-light">
+      <div class="row justify-content-center g-3">
+        <div class="col-12 col-md-4">
+          <div class="input-group">
+            <span class="input-group-text text-white bg-primary"><i class="bi bi-search"></i></span>
+            <input type="text" id="buscar" class="form-control" placeholder="Buscar producto por nombre...">
+          </div>
         </div>
 
-        <!-- Buscar -->
-        <div class="card-custom mb-4 bg-light">
-            <div class="row justify-content-center g-3">
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-text text-white bg-primary"><i class="bi bi-search"></i></span>
-                        <input type="text" id="buscar" class="form-control" placeholder="Buscar producto por nombre...">
-                    </div>
-                </div>
+        <div class="col-12 col-md-4">
+          <div class="input-group">
+            <span class="input-group-text text-white bg-primary"><i class="bi bi-funnel"></i></span>
+            <select id="filtro-categoria" class="form-select" required>
+              <option value="" disabled selected>Filtrar por categoría</option>
+              <option value="">Todos los productos</option>
+              <option value="Frutas">Frutas</option>
+              <option value="Verduras">Verduras</option>
+              <option value="Botanas">Botanas</option>
+              <option value="Cereales">Cereales</option>
+              <option value="Bebidas">Bebidas</option>
+              <option value="Lácteos">Lácteos</option>
+              <option value="Limpieza">Limpieza</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ropa">Ropa</option>
+              <option value="Calzado">Calzado</option>
+              <option value="Deportes">Deportes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                <div class="col-12 col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-text text-white bg-primary"><i class="bi bi-funnel"></i></span>
-                        <select id="filtro-categoria" class="form-select" required>
-                            <option value="" disabled selected>Filtrar por categoría</option>
-                            <option value="">Todos los productos</option>
-                            <option value="Frutas">Frutas</option>
-                            <option value="Verduras">Verduras</option>
-                            <option value="Botanas">Botanas</option>
-                            <option value="Cereales">Cereales</option>
-                            <option value="Bebidas">Bebidas</option>
-                            <option value="Lácteos">Lácteos</option>
-                            <option value="Limpieza">Limpieza</option>
-                            <option value="Tecnología">Tecnología</option>
-                            <option value="Ropa">Ropa</option>
-                            <option value="Calzado">Calzado</option>
-                            <option value="Deportes">Deportes</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <!-- Formulario -->
+    <div class="card-custom mb-5 bg-light">
+      <form id="form-producto" class="row g-3">
+        <div class="col-12 col-md-3">
+          <div class="input-group ">
+            <span class="input-group-text text-white bg-primary"><i class="bi bi-box-seam"></i></span>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+          </div>
         </div>
 
-        <!-- Formulario -->
-        <div class="card-custom mb-5 bg-light">
-            <form id="form-producto" class="row g-3">
-                <div class="col-12 col-md-3">
-                    <div class="input-group ">
-                        <span class="input-group-text text-white bg-primary"><i class="bi bi-box-seam"></i></span>
-                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
-                    </div>
-                </div>
+        <div class="col-12 col-md-2">
+          <div class="input-group">
+            <span class="input-group-text text-white bg-primary">$</span>
+            <input type="number" id="precio" class="form-control" placeholder="Precio" required>
+          </div>
+        </div>
 
-                <div class="col-12 col-md-2">
-                    <div class="input-group">
-                        <span class="input-group-text text-white bg-primary">$</span>
-                        <input type="number" id="precio" class="form-control" placeholder="Precio" required>
-                    </div>
-                </div>
+        <div class="col-12 col-md-2">
+          <div class="input-group">
+            <span class="input-group-text text-white bg-primary"><i class="bi bi-123"></i></span>
+            <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" required>
+          </div>
+        </div>
 
-                <div class="col-12 col-md-2">
-                    <div class="input-group">
-                        <span class="input-group-text text-white bg-primary"><i class="bi bi-123"></i></span>
-                        <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" required>
-                    </div>
-                </div>
+        <div class="col-12 col-md-3">
+          <div class="input-group">
+            <span class="input-group-text text-white bg-primary"><i class="bi bi-tags"></i></span>
+            <select id="categoria" class="form-select" required>
+              <option value="" disabled selected>Categoría</option>
+              <option value="Frutas">Frutas</option>
+              <option value="Verduras">Verduras</option>
+              <option value="Botanas">Botanas</option>
+              <option value="Cereales">Cereales</option>
+              <option value="Bebidas">Bebidas</option>
+              <option value="Lácteos">Lácteos</option>
+              <option value="Limpieza">Limpieza</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ropa">Ropa</option>
+              <option value="Calzado">Calzado</option>
+              <option value="Deportes">Deportes</option>
+            </select>
+          </div>
+        </div>
 
-                <div class="col-12 col-md-3">
-                    <div class="input-group">
-                        <span class="input-group-text text-white bg-primary"><i class="bi bi-tags"></i></span>
-                        <select id="categoria" class="form-select" required>
-                            <option value="" disabled selected>Categoría</option>
-                            <option value="Frutas">Frutas</option>
-                            <option value="Verduras">Verduras</option>
-                            <option value="Botanas">Botanas</option>
-                            <option value="Cereales">Cereales</option>
-                            <option value="Bebidas">Bebidas</option>
-                            <option value="Lácteos">Lácteos</option>
-                            <option value="Limpieza">Limpieza</option>
-                            <option value="Tecnología">Tecnología</option>
-                            <option value="Ropa">Ropa</option>
-                            <option value="Calzado">Calzado</option>
-                            <option value="Deportes">Deportes</option>
-                        </select>
-                    </div>
-                </div>
+        <div class="col-12 col-md-2">
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="bi bi-plus-circle me-1"></i>Agregar
+          </button>
+        </div>
+      </form>
+    </div>
 
-                <div class="col-12 col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-plus-circle me-1"></i>Agregar
-                    </button>
-                </div>
+    <!-- Tabla -->
+    <div class="card-custom bg-light p-0 overflow-hidden">
+      <div class="table-responsive">
+        <table class="table align-middle text-center mb-0 table-hover"
+          style="border-collapse: separate; border-spacing: 0;">
+          <thead style="background: linear-gradient(90deg, #0d6efd, #0dcaf0); color: white;">
+            <tr>
+              <th scope="col"><i class="bi bi-box-seam me-2"></i>Nombre</th>
+              <th scope="col"><i class="bi bi-cash-coin me-2"></i>Precio</th>
+              <th scope="col"><i class="bi bi-123 me-2"></i>Cantidad</th>
+              <th scope="col"><i class="bi bi-tags me-2 "></i>Categoría</th>
+              <th scope="col"><i class="bi bi-gear-fill me-2"></i>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="productos-body" style="background-color: #ffffff;">
+            <!-- Filas se insertan dinámicamente desde /src/main.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="editarModalLabel"><i class="bi bi-pencil-square me-2"></i>Editar producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editarForm">
+              <div class="mb-3">
+                <label for="editarNombre" class="form-label">Nombre</label>
+                <input type="text" id="editarNombre" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="editarPrecio" class="form-label">Precio</label>
+                <input type="number" id="editarPrecio" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="editarCantidad" class="form-label">Cantidad</label>
+                <input type="number" id="editarCantidad" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="editarCategoria" class="form-label">Categoría</label>
+                <select id="editarCategoria" class="form-select" required>
+                  <option value="Frutas">Frutas</option>
+                  <option value="Verduras">Verduras</option>
+                  <option value="Botanas">Botanas</option>
+                  <option value="Cereales">Cereales</option>
+                  <option value="Bebidas">Bebidas</option>
+                  <option value="Lácteos">Lácteos</option>
+                  <option value="Limpieza">Limpieza</option>
+                  <option value="Tecnología">Tecnología</option>
+                  <option value="Ropa">Ropa</option>
+                  <option value="Calzado">Calzado</option>
+                  <option value="Deportes">Deportes</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
             </form>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Tabla -->
-        <div class="card-custom bg-light p-0 overflow-hidden">
-            <div class="table-responsive">
-                <table class="table align-middle text-center mb-0 table-hover" style="border-collapse: separate; border-spacing: 0;">
-                    <thead style="background: linear-gradient(90deg, #0d6efd, #0dcaf0); color: white;">
-                        <tr>
-                            <th scope="col"><i class="bi bi-box-seam me-2"></i>Nombre</th>
-                            <th scope="col"><i class="bi bi-cash-coin me-2"></i>Precio</th>
-                            <th scope="col"><i class="bi bi-123 me-2"></i>Cantidad</th>
-                            <th scope="col"><i class="bi bi-tags me-2 "></i>Categoría</th>
-                            <th scope="col"><i class="bi bi-gear-fill me-2"></i>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productos-body" style="background-color: #ffffff;">
-                        <!-- Filas se insertan dinámicamente desde /src/main.js -->
-                    </tbody>
-                </table>
+    <!--  Modal para editar -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form-editar">
+            <div class="modal-header text-center bg-info text-white">
+              <h5 class="modal-title w-100 text-center">
+                <i class="bi bi-pencil-square me-2"></i>Editar Producto
+              </h5>
             </div>
-        </div>
+            <div class="modal-body">
+              <input type="hidden" id="editar-id">
 
-        <!-- Modal Editar -->
-        <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="editarModalLabel"><i class="bi bi-pencil-square me-2"></i>Editar producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editarForm">
-                            <div class="mb-3">
-                                <label for="editarNombre" class="form-label">Nombre</label>
-                                <input type="text" id="editarNombre" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editarPrecio" class="form-label">Precio</label>
-                                <input type="number" id="editarPrecio" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editarCantidad" class="form-label">Cantidad</label>
-                                <input type="number" id="editarCantidad" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editarCategoria" class="form-label">Categoría</label>
-                                <select id="editarCategoria" class="form-select" required>
-                                    <option value="Frutas">Frutas</option>
-                                    <option value="Verduras">Verduras</option>
-                                    <option value="Botanas">Botanas</option>
-                                    <option value="Cereales">Cereales</option>
-                                    <option value="Bebidas">Bebidas</option>
-                                    <option value="Lácteos">Lácteos</option>
-                                    <option value="Limpieza">Limpieza</option>
-                                    <option value="Tecnología">Tecnología</option>
-                                    <option value="Ropa">Ropa</option>
-                                    <option value="Calzado">Calzado</option>
-                                    <option value="Deportes">Deportes</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
-                        </form>
-                    </div>
+              <!-- Nombre -->
+              <div class="mb-3">
+                <label>Nombre</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-box-seam"></i></span>
+                  <input type="text" id="editar-nombre" class="form-control" required>
                 </div>
-            </div>
-        </div>
+              </div>
 
-      <!-- ✏️ Modal para editar -->
-  <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form id="form-editar">
-          <div class="modal-header text-center bg-info text-white">
-            <h5 class="modal-title w-100 text-center">
-              <i class="bi bi-pencil-square me-2"></i>Editar Producto
+              <!-- Precio -->
+              <div class="mb-3">
+                <label>Precio</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-cash"></i></span>
+                  <input type="number" id="editar-precio" class="form-control" required>
+                </div>
+              </div>
+
+              <!-- Cantidad -->
+              <div class="mb-3">
+                <label>Cantidad</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-123"></i></span>
+                  <input type="number" id="editar-cantidad" class="form-control" required>
+                </div>
+              </div>
+
+              <!-- Categoría -->
+              <div class="mb-3">
+                <label>Categoría</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-tags"></i></span>
+                  <input type="text" id="editar-categoria" class="form-control" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle me-1"></i> Actualizar
+              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <i class="bi bi-x-circle me-1"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--  Modal de producto duplicado -->
+    <div class="modal fade" id="modalDuplicado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title">
+              <i class="bi bi-exclamation-triangle me-2"></i> Producto duplicado
             </h5>
           </div>
           <div class="modal-body">
-            <input type="hidden" id="editar-id">
-
-            <!-- Nombre -->
-            <div class="mb-3">
-              <label>Nombre</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-box-seam"></i></span>
-                <input type="text" id="editar-nombre" class="form-control" required>
-              </div>
-            </div>
-
-            <!-- Precio -->
-            <div class="mb-3">
-              <label>Precio</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-cash"></i></span>
-                <input type="number" id="editar-precio" class="form-control" required>
-              </div>
-            </div>
-
-            <!-- Cantidad -->
-            <div class="mb-3">
-              <label>Cantidad</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-123"></i></span>
-                <input type="number" id="editar-cantidad" class="form-control" required>
-              </div>
-            </div>
-
-            <!-- Categoría -->
-            <div class="mb-3">
-              <label>Categoría</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-tags"></i></span>
-                <input type="text" id="editar-categoria" class="form-control" required>
-              </div>
-            </div>
+            Este producto ya se encuentra en el inventario.<br>
+            Si desea agregar más cantidad del producto, consúltelo en el apartado de búsqueda.
           </div>
-
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">
-              <i class="bi bi-check-circle me-1"></i> Actualizar
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="bi bi-x-circle me-1"></i> Cerrar
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  Modal de éxito al agregar producto -->
+    <div class="modal fade" id="modalAgregado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-success">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-check-circle me-2"></i> Producto agregado
+            </h5>
+          </div>
+          <div class="modal-body text-center">
+            El producto ha sido agregado correctamente al inventario.
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--  Modal de éxito al actualizar producto -->
+    <div class="modal fade" id="modalActualizado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-success">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-check-circle me-2"></i> Producto actualizado
+            </h5>
+          </div>
+          <div class="modal-body text-center">
+            El producto ha sido actualizado correctamente en el inventario.
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--  Modal de confirmación para eliminar -->
+    <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-trash3 me-2"></i> Confirmar eliminación
+            </h5>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro que deseas eliminar este producto?<br>
+            Esta acción no se puede deshacer.
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               <i class="bi bi-x-circle me-1"></i> Cancelar
             </button>
+            <button id="btn-confirmar-eliminar" type="button" class="btn btn-danger">
+              <i class="bi bi-trash me-1"></i> Eliminar
+            </button>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- ⚠️ Modal de producto duplicado -->
-  <div class="modal fade" id="modalDuplicado" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-warning">
-          <h5 class="modal-title">
-            <i class="bi bi-exclamation-triangle me-2"></i> Producto duplicado
-          </h5>
-        </div>
-        <div class="modal-body">
-          Este producto ya se encuentra en el inventario.<br>
-          Si desea agregar más cantidad del producto, consúltelo en el apartado de búsqueda.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            <i class="bi bi-x-circle me-1"></i> Cerrar
-          </button>
         </div>
       </div>
     </div>
+
+    <footer class="mt-5">
+      <p>Inventario de Productos © 2025 | Desarrollado por Alfredo Juan Moroni - Leonardo Pasten Martínez</p>
+    </footer>
   </div>
 
-  <!-- ✅ Modal de éxito al agregar producto -->
-  <div class="modal fade" id="modalAgregado" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-success">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title">
-            <i class="bi bi-check-circle me-2"></i> Producto agregado
-          </h5>
-        </div>
-        <div class="modal-body text-center">
-          El producto ha sido agregado correctamente al inventario.
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-            Cerrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ✅ Modal de éxito al actualizar producto -->
-  <div class="modal fade" id="modalActualizado" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-success">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title">
-            <i class="bi bi-check-circle me-2"></i> Producto actualizado
-          </h5>
-        </div>
-        <div class="modal-body text-center">
-          El producto ha sido actualizado correctamente en el inventario.
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-            Cerrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- 🗑️ Modal de confirmación para eliminar -->
-  <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title">
-            <i class="bi bi-trash3 me-2"></i> Confirmar eliminación
-          </h5>
-        </div>
-        <div class="modal-body">
-          ¿Estás seguro que deseas eliminar este producto?<br>
-          Esta acción no se puede deshacer.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            <i class="bi bi-x-circle me-1"></i> Cancelar
-          </button>
-          <button id="btn-confirmar-eliminar" type="button" class="btn btn-danger">
-            <i class="bi bi-trash me-1"></i> Eliminar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-        <footer class="mt-5">
-            <p>Inventario de Productos © 2025 | Desarrollado por Alfredo Juan Moroni - Leonardo Pasten Martínez</p>
-        </footer>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/src/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

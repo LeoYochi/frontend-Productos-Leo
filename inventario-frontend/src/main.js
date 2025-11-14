@@ -6,9 +6,9 @@ const API_URL = "https://backend-productos-leo.onrender.com/api/products";
 const form = document.getElementById("form-producto");
 const productosBody = document.getElementById("productos-body");
 
-let idProductoAEliminar = null; // 🗑️ ID temporal para confirmar eliminación
+let idProductoAEliminar = null; //  ID temporal para confirmar eliminación
 
-// 🔄 Cargar productos
+//  Cargar productos
 async function cargarProductos() {
   const res = await fetch(API_URL);
   const data = await res.json();
@@ -39,7 +39,7 @@ async function cargarProductos() {
   aplicarFiltros();
 }
 
-// ➕ Agregar producto
+//  Agregar producto
 form.addEventListener("submit", async e => {
   e.preventDefault();
 
@@ -84,7 +84,7 @@ form.addEventListener("submit", async e => {
   }
 });
 
-// ✏️ Editar producto
+//  Editar producto
 window.editarProducto = function(id, nombre, precio, cantidad, categoria) {
   document.getElementById("editar-id").value = id;
   document.getElementById("editar-nombre").value = nombre;
@@ -96,7 +96,7 @@ window.editarProducto = function(id, nombre, precio, cantidad, categoria) {
   modal.show();
 };
 
-// 📝 Guardar cambios
+//  Guardar cambios
 document.getElementById("form-editar").addEventListener("submit", async e => {
   e.preventDefault();
   const id = document.getElementById("editar-id").value;
@@ -125,7 +125,7 @@ document.getElementById("form-editar").addEventListener("submit", async e => {
   }
 });
 
-// 🗑️ Eliminar producto con confirmación
+//  Eliminar producto con confirmación
 window.eliminarProducto = function(id) {
   idProductoAEliminar = id;
   const modal = new bootstrap.Modal(document.getElementById("modalConfirmarEliminar"));
@@ -146,7 +146,7 @@ document.getElementById("btn-confirmar-eliminar").addEventListener("click", asyn
   idProductoAEliminar = null;
 });
 
-// 🔍 Filtros combinados
+//  Filtros combinados
 document.getElementById("buscar").addEventListener("input", aplicarFiltros);
 document.getElementById("filtro-categoria").addEventListener("change", aplicarFiltros);
 
